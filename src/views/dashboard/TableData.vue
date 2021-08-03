@@ -1,33 +1,7 @@
 <template>
   <div class="container-fluid mt-5">
     <div class="row">
-      <div class="col-md-4">
-        <div class="card">
-          <div class="card-body">
-            MAIN MENU
-            <hr />
-            <ul class="list-group">
-              <router-link
-                :to="{ name: 'dashboard' }"
-                class="list-group-item text-dark text-decoration-none"
-                >DASHBOARD</router-link
-              >
-              <router-link
-                :to="{ name: 'dashboard.data' }"
-                class="list-group-item text-dark text-decoration-none"
-                >DATA</router-link
-              >
-              <li
-                @click.prevent="logout"
-                class="list-group-item text-dark text-decoration-none"
-                style="cursor:pointer"
-              >
-                LOGOUT
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
+      <Menu :logout="logout" />
       <div class="col-md-8">
         <div class="card border-0 rounded shadow">
           <div class="card-body">
@@ -78,7 +52,11 @@
 import axios from "axios";
 import { onMounted, ref } from "vue";
 import { useRouter } from "vue-router";
+import Menu from "../../components/Menu.vue";
 export default {
+  components: {
+    Menu,
+  },
   setup() {
     let posts = ref([]);
     const router = useRouter();
